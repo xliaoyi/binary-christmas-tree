@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Choice Page</title>
+    <style>
+        /* Styles for the whole body and html, setting up the page to center content */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.5s ease;
+            background-color: white;
+        }
+
+        /* Styles for centered elements (GO, YES, NO) */
+        .centered {
+            position: absolute;
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            font-size: 120px; /* Large text for visibility */
+            color: white; /* White text color */
+            text-align: center; /* Center text */
+            width: 100vw; /* Full viewport width */
+            height: 100vh; /* Full viewport height */
+            top: 0;
+            left: 0;
+        }
+
+        /* Styles for the GO button */
+        #goButton {
+            background-color: black;
+            border-radius: 50%; /* Circular shape */
+            width: 500px; /* Size of the button */
+            height: 500px;
+            cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+            position: absolute;
+            top: 50%; /* Center the button vertically */
+            left: 50%; /* Center the button horizontally */
+            transform: translate(-50%, -50%); /* Adjust position to truly center the element */
+        }
+
+        /* Initial state for YES and NO is hidden */
+        #yes, #no {
+            display: none; /* Hidden until GO is clicked */
+        }
+
+        /* Specific background colors for YES and NO */
+        #yes { background-color: rgb(93, 160, 93); }
+        #no { background-color: rgb(200, 98, 98); }
+    </style>
+</head>
+<body>
+    <!-- The GO button -->
+    <div id="goButton" class="centered">Go</div>
+
+    <!-- The YES and NO elements, initially hidden -->
+    <div id="yes" class="centered" style="display: none;">YES</div>
+    <div id="no" class="centered" style="display: none;">NO</div>
+
+    <script>
+        // When the GO button is clicked
+        document.getElementById('goButton').onclick = function() {
+            // Randomly choose between YES and NO
+            var choice = Math.random() < 0.5 ? 'yes' : 'no';
+            // Hide the GO button
+            this.style.display = 'none';
+            // Show the chosen element (YES or NO)
+            document.getElementById(choice).style.display = 'flex';
+            // Change the background color accordingly
+            document.body.style.backgroundColor = choice === 'yes' ? 'rgb(93, 160, 93)' : 'rgb(200, 98, 98)';
+        };
+
+        // When the YES element is clicked
+        document.getElementById('yes').onclick = function() {
+            // Hide the YES element
+            this.style.display = 'none';
+            // Show the GO button again
+            document.getElementById('goButton').style.display = 'flex';
+            // Reset the background color to white
+            document.body.style.backgroundColor = 'white';
+        };
+
+        // When the NO element is clicked
+        document.getElementById('no').onclick = function() {
+            // Hide the NO element
+            this.style.display = 'none';
+            // Show the GO button again
+            document.getElementById('goButton').style.display = 'flex';
+            // Reset the background color to white
+            document.body.style.backgroundColor = 'white';
+        };
+    </script>
+</body>
+</html>
